@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Watch Example</title>
+  <style>
+    html, body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .watch {
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background-color:blanchedalmond;
+      border: 2px solid #333;
+      position: relative;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .hour-numbers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    
+    .hour-number {
+      position: absolute;
+      font-size: 16px;
+      font-size: 2rem;
+      color: darkblue;
+    }
+    
+    .hour-text {
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
+    
+    .hour-hand, .minute-hand, .second-hand {
+      background-color: #333;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform-origin: bottom center;
+      transform: rotate(0deg); /* Initialize rotation to 0 degrees */
+    }
+    .hour-hand{
+        background-color: #b22ad7;
+      position: absolute;
+      top: 14%;
+      left: 50%;
+      transform-origin: bottom center;
+      transform: rotate(0deg);
+    }
+
+    .minute-hand{
+        background-color: rgb(190, 17, 89);
+        position: absolute;
+        top: 6%;
+        left: 50%;
+        transform-origin: bottom center;
+        transform: rotate(0deg);
+    }
+
+    .second-hand{
+        background-color: #333;
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        transform-origin: bottom center;
+        transform: rotate(0deg);
+    }
+    
+    .hour-hand {
+      width: 8px;
+      height: 180px;
+      margin-left: -4px;
+    }
+    
+    .minute-hand {
+      width: 6px;
+      height: 220px;
+      margin-left: -3px;
+    }
+    
+    .second-hand {
+      width: 4px;
+      height: 240px;
+      margin-left: -2px;
+    }
+    
+    .center-dot {
+      background-color: #333;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -5px;
+      margin-left: -5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="watch">
+    <div class="hour-numbers">
+      <div class="hour-number" style="transform: rotate(30deg) translate(0, -200px)">1</div>
+      <div class="hour-number" style="transform: rotate(60deg) translate(0, -200px)">2</div>
+      <div class="hour-number" style="transform: rotate(90deg) translate(0, -200px)">3</div>
+      <div class="hour-number" style="transform: rotate(120deg) translate(0, -200px)">4</div>
+      <div class="hour-number" style="transform: rotate(150deg) translate(0, -200px)">5</div>
+      <div class="hour-number" style="transform: rotate(180deg) translate(0, -200px)">6</div>
+      <div class="hour-number" style="transform: rotate(210deg) translate(0, -200px)">7</div>
+      <div class="hour-number" style="transform: rotate(240deg) translate(0, -200px)">8</div>
+      <div class="hour-number" style="transform: rotate(270deg) translate(0, -200px)">9</div>
+      <div class="hour-number" style="transform: rotate(300deg) translate(0, -200px)">10</div>
+      <div class="hour-number" style="transform: rotate(330deg) translate(0, -200px)">11</div>
+      <div class="hour-number" style="transform: rotate(360deg) translate(0, -200px)">12</div>
+    </div>
+    <div class="hour-hand"></div>
+    <div class="minute-hand"></div>
+    <div class="second-hand"></div>
+    <div class="center-dot"></div>
+  </div>
+
+  <script>
+    // Function to update the watch hands based on the current time
+    function updateWatch() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+      
+      var hourHand = document.querySelector('.hour-hand');
+      var minuteHand = document.querySelector('.minute-hand');
+      var secondHand = document.querySelector('.second-hand');
+      
+      // Calculate the rotation angle for each hand
+      var hourRotation = (hours * 30) + (minutes * 0.5); // Each hour represents 30 degrees, each minute represents 0.5 degrees
+      var minuteRotation = (minutes * 6) + (seconds * 0.1); // Each minute represents 6 degrees, each second represents 0.1 degrees
+      var secondRotation = seconds * 6; // Each second represents 6 degrees
+      
+      // Apply the rotation to the hands
+      hourHand.style.transform = 'rotate(' + hourRotation + 'deg)';
+      minuteHand.style.transform = 'rotate(' + minuteRotation + 'deg)';
+      secondHand.style.transform = 'rotate(' + secondRotation + 'deg)';
+    }
+    
+    // Update the watch every second
+    setInterval(updateWatch, 1000);
+    
+    // Initial update
+    updateWatch();
+  </script>
+</body>
+</html>
